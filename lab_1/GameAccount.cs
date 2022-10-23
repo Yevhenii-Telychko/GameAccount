@@ -37,19 +37,19 @@ namespace lab_1
             UserName = userName;
         }
 
-        public void WinGame(GameAccount Opponent, int rating, int idOfTheMatch)
+        public void WinGame(GameAccount Opponent, int rating, int idOfTheMatch, string gameType)
         {
-            if (rating <= 0)
+            if (rating < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(rating), "Rating should be positive");
             }
-            GameRecord game = new GameRecord(this, Opponent, rating, idOfTheMatch, "Win");
+            GameRecord game = new GameRecord(idOfTheMatch, this, Opponent, rating, "Win", gameType);
             allGames.Add(game);
         }
 
-        public void LoseGame(GameAccount Opponent, int rating, int idOfTheMatch)
+        public void LoseGame(GameAccount Opponent, int rating, int idOfTheMatch, string gameType)
         {
-            if (rating <= 0)
+            if (rating < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(rating), "Rating should be positive");
             }
@@ -57,17 +57,17 @@ namespace lab_1
             {
                 throw new InvalidOperationException("A Rating is bigger that a rating of the player");
             }
-            GameRecord game = new GameRecord(this, Opponent, -rating, idOfTheMatch,"Lose");
+            GameRecord game = new GameRecord(idOfTheMatch, this, Opponent, -rating,"Lose", gameType);
             allGames.Add(game);
         }
 
         public string GetStats()
         {
             var report = new System.Text.StringBuilder();
-            report.AppendLine("Against\tResult\tRating\tId");
+            report.AppendLine("Id\tType\tAgainst\t\tResult\tRating");
             foreach (var game in allGames)
             {
-                report.AppendLine($"{game.Opponent.UserName}\t{game.Result}\t{game.Rating}\t{game.GameId}");
+                report.AppendLine($"{game.GameId}\t{game.GameType}\t{game.Opponent.UserName}\t{game.Result}\t{game.Rating}");
             }
             return report.ToString();
         }
