@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace lab_1
+﻿namespace lab_1
 {
     public abstract class Game
     {
@@ -51,7 +45,7 @@ namespace lab_1
             return 0;
         }
     }
-    
+
     public class RankedGame : Game
     {
         public override string GameType
@@ -68,7 +62,7 @@ namespace lab_1
         }
     }
 
-    public class SafeGame : RankedGame
+    public class SafeGame : Game
     {
         public override string GameType
         {
@@ -76,6 +70,11 @@ namespace lab_1
             {
                 return "Safe";
             }
+        }
+
+        protected override int GenerateRating()
+        {
+            return random.Next(20, 26);
         }
 
         public override void PlayGame(GameAccount firstPlayer, GameAccount secondPlayer)

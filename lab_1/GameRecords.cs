@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace lab_1
+﻿namespace lab_1
 {
     public class GameRecord
     {
@@ -21,8 +15,8 @@ namespace lab_1
             GameType = gameType;
             Player = player;
             Opponent = opponent;
-            Rating = rating;
             Result = result;
+            Rating = rating;
         }
     }
 }
